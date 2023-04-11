@@ -1,23 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { getBore } from './store/boredom/actions';
+import { useEffect } from 'react';
 
 function App() {
+
+  const boreData = useSelector(state => state.bore);
+  const dispatch = useDispatch()
+
+useEffect(()=>{
+  dispatch(getBore());
+},[])
+console.log(boreData)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{boreData.data.activity}</h1>
     </div>
   );
 }
